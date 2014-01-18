@@ -1,0 +1,6 @@
+{
+    "logPath": "../logs/",
+    "logFileNamePrefix": "log",
+    "port": 7076,
+    "verbose": true
+}

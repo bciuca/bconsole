@@ -1,0 +1,19 @@
+<script src="socket.io.js"></script>
+<script>
+    var io = io.connect('http://192.168.2.38:7076');
+
+    console.log('emit ready');
+    // Emit ready event.
+    io.emit('ready');
+
+    // Listen for the talk event.
+    io.on('talk', function(data) {
+        console.log('talking', data);
+    });
+
+    function remotelog(message) {
+        io.emit('log', { message: message });
+    }
+
+    remotelog('testing ' + Date.now());
+</script>
