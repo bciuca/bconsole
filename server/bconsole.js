@@ -18,8 +18,8 @@ Object.defineProperties(defaultConfig, {
     }
 });
 
-writeLog('BCLogger Started ' + (new Date().toString()));
-writeLog('Server IPs\n   ' + getLocalIPs().join('\n   '));
+writeLog('bconsole Started ' + (new Date().toString()));
+writeLog('Server network\n   ' + getLocalIPs().join('\n   '));
 
 
 function getTimeStamp() {
@@ -39,22 +39,20 @@ function getTimeStamp() {
         hh = zeroFill(date.getHours(), 2),
         mm = zeroFill(date.getMinutes(), 2),
         ss = zeroFill(date.getSeconds(), 2),
-        ms = zeroFill(date.getMilliseconds(), 3)
+        mmm = zeroFill(date.getMilliseconds(), 3)
     ;
 
-    return yyyy + '-' + MM + '-' + dd + ' ' + hh + ':' + mm + ':' + ss + ':' + ms;
+    return yyyy + '-' + MM + '-' + dd + ' ' + hh + ':' + mm + ':' + ss + ':' + mmm;
 }
 
-// lifted from http://stackoverflow.com/questions/3653065/get-local-ip-address-in-node-js
+
 function getLocalIPs() {
-    var ifaces = os.networkInterfaces(),
+    var interfaces = os.networkInterfaces(),
         addresses = [];
-    for (var dev in ifaces) {
-        var alias=0;
-        ifaces[dev].forEach(function(details){
-            if (details.family === 'IPv4') {
-                addresses.push(dev + ': ' + details.address);
-                ++alias;
+    for (var key in interfaces) {
+        interfaces[key].forEach(function(obj){
+            if (obj.family === 'IPv4') {
+                addresses.push(key + ': ' + obj.address);
             }
         });
     }
@@ -79,6 +77,7 @@ function getConfig() {
  
 function writeLog(message) {
     if (!message) return;
+    var logPath = config.logPath + config.logFileNamePrefix + '_' + Date.now() + '.txt';
 
     message = getTimeStamp() + '| ' + message;
 
@@ -101,7 +100,8 @@ app.http().io();
 app.io.route('ready', function(req) {
     console.dir(req);
     writeLog('"ready" received from:\n\tsocket id: ' + req.io.socket.id +
-        '\n\tuser-agent: ' + req.handshake.headers['user-agent']
+        '\n\tuser-agent: ' + req.headers['user-agent'] +
+        '\n\treferer:' + req.headers.referer
     );
 });
 
