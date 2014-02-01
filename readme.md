@@ -15,14 +15,13 @@ Running the logger in the console is a matter of loading the bconsole and the so
     
     <script>
         // Initialize the console instance.
-        // You can either load the socket.io library dynamically as done in the
-        //   the configuration below, or you can just load the library with your
-        //	 other scripts.
-        // The serverUrl is the path to your node socket server instance and 
-        //   port number.
+        // Either load the socket.io library dynamically as done in the
+        //   the configuration below, or load the library via script tag.
+        // The serverUrl is the path to your node socket server instance
+        //   and port number.
         bconsole.init({
     	    libPath: 'js/socket.io.js',
-    	    serverUrl: 'http://192.168.1.113:7076'
+    	    serverUrl: 'http://127.0.0.1:7076'
         });
     
         bconsole.log('Hello world!');

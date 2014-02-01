@@ -10,7 +10,8 @@ var app = require('express.io')(),
         port: 7076,
         verbose: true
     },
-    config = getConfig();
+    config = getConfig(),
+    localIps = getLocalIPs() || [];
 
 Object.defineProperties(defaultConfig, {
     logFullPath : {
@@ -21,7 +22,7 @@ Object.defineProperties(defaultConfig, {
 });
 
 writeLog('bconsole Started ' + (new Date().toString()));
-writeLog('Server network\n   ' + getLocalIPs().join('\n   '));
+writeLog('Server IP' + (localIps.length ? 's' : '') + ':\n   ' + localIps.join('\n   '));
 
 
 function getTimeStamp() {
@@ -114,4 +115,3 @@ app.io.route('log', function(req) {
 });
 
 app.listen(config.port);
-
