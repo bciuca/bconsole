@@ -10,7 +10,7 @@ The bconsole utility is a Node.js based web socket server that logs messages fro
 ### Client Side
 
 Running the logger in the console is a matter of loading the bconsole and the socket.io js files. To use the bconsole in your client application, load the libraries and initialze bconsole with at least the URL of the server component. The default configuration use port 7076.
-
+```javascript
     <script src="js/bconsole.client.js"></script>
     
     <script>
@@ -25,11 +25,12 @@ Running the logger in the console is a matter of loading the bconsole and the so
         });
     
         bconsole.log('Hello world!');
-    </script>    
+    </script>
+```
 
 ### Server Side
 
-Set configuration files for the server in the config file: `config/config.json`
+Set configuration for the server in the config file, `config/config.json`
 
     {
         "logPath": "../logs/",
@@ -38,7 +39,9 @@ Set configuration files for the server in the config file: `config/config.json`
         "verbose": true
     }
 
+Starting the server in the terminal:
 
+    node bconsole.server.js
 
 
 
