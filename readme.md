@@ -5,7 +5,7 @@ _bconsole_ is a Node.js based web socket server that writes messages received fr
 
 ## Usage
 
-Minimal setup on the client side is needed. The server can be run with the default configuartion.
+Minimal setup on the client side is needed. The server can be run with the default configuration.
 
 ### Client
 
