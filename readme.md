@@ -1,11 +1,13 @@
-# bconsole - simple websocket logging
+# bconsole - a simple websocket logger
 
 ## Overview
-The bconsole utility is a Node.js based web socket server that logs messages from a client application. Included in this repo is the Node.js module and the client side library.
+_bconsole_ is a Node.js based web socket server that writes messages received from a client to a server side file. The logs can either be tailed or will be printed to the console when in verbose mode. Included in this repo is the Node.js module and the client side libraries.
 
 ## Usage
 
-### Client Side
+Minimal setup on the client side is needed. The server can be run with the default configuartion.
+
+### Client
 
 Running the logger in the console is a matter of loading the bconsole and the socket.io js files. To use the bconsole in your client application, load the libraries and initialze bconsole with at least the URL of the server component. The default configuration use port 7076.
 ```html
@@ -26,7 +28,7 @@ Running the logger in the console is a matter of loading the bconsole and the so
 </script>
 ```
 
-### Server Side
+### Server
 
 Set configuration for the server in the config file, `config/config.json`
 
